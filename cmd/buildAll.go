@@ -35,6 +35,7 @@ func buildAllRun(cmd *cobra.Command, args []string) error {
 		//
 		// Problem: This 'Execute()' call will cause infinite recursion :-(
 		//
+		rootCmd.SetArgs([]string{builderCmd.Parent().Use, builderCmd.Use})
 		if err := builderCmd.Execute(); err != nil {
 			return errors.Wrapf(err, "running command %s", builderCmd.Use)
 		}
